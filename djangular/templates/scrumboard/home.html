@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        {% load staticfiles %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="" text="" css"="" href="{% static 'css/custom.css' %} ">
+  
+        <header class="site-header">
+      <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="{% url 'home' %}">Django Trello</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+              {% else %}
+                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+<br>
+        
+        
+         <div class="container mt-5">
+            {% if messages %}
+                {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}">
+                                    {{ message }}
+                                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+             
+         </div>
+        {% verbatim %}
+        <div class="container mt-5" ng-app="scrumboard.demo" ng-controller="ScrumboardController">
+            <div class="row">
+                <div class="col-md-3" ng-repeat="list in data">
+                    <div class="shadow-none p-2 mb-2 bg-light">
+                        <div class="clearfix">
+                            <h6 class="float-left mb-4">{{ list.name }}</h6>
+                       
+                         <span class="show-filters float-right">
+                            <button ng-click="showFilters=!showFilters" class="btn btn-primary btn-custom2 btn-sm">
+                                {{ showFilters ? "Hide" : "Show" }} filters
+                            </button>
+                        </span>
+                        </div>
+                        <div class="list-sort" ng-show="showFilters">
+                            <hr>
+                            
+                            <label>Sort by:</label>
+                            <select ng-model="sortBy">
+                                <option value="title">Title</option>
+                                <option value="story_points">Story Points</option>
+                                <option value="business_value">Business Value</option>
+                            </select>
+                                
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" id="customCheck" ng-model="reverse">
+                                <label class="custom-control-label" for="customCheck">Reverse</label>
+                            </div>
+                            
+                            
+                            <div class="input-group"> 
+                                <label>Filter: </label>&nbsp;
+                                <input type="text" class="form-control" ng-Model="filterBy"/>
+                            </div>
+                           
+
+                            <hr>
+                        </div>
+                        <ul>
+                            <li ng-repeat="card in list.cards | filter:filterBy | orderBy:sortBy:reverse">
+                                <scrumboard-card></scrumboard-card>
+                            </li>
+                        </ul>  
+                        <div class="shadow-none bg-light">
+                          <div ng-show="showme">
+                            <div class="form-group">
+                                <input class="form-control" type="text" onfocus="this.value=''" ng-model="new_title"  placeholder="Enter a title for this card..."/>
+                            </div>
+                            <div class="form-group">
+                                <span class="form-group-btn">
+                                    <button type="submit" class="btn btn-primary btn-sm btn-custom2 ml-2" ng-click="add(list, new_title)">+ Add card</button>
+                                    <button type="button" class="btn btn-primary btn-sm btn-custom2" ng-show="showme" ng-click="showme=false">Close</button>
+                                </span>
+                            </div>
+                          </div>
+                        <span class="hover-pointer add-card" ng-click="showme=true" ng-hide="showme">+Add another card</span>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endverbatim %}
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="{% static 'js/scrumboard.js' %}"></script>
+        <script src="{% static 'js/scrumboard.config.js' %}"></script>
+        <script src="{% static 'js/card.directive.js' %}"></script>
+    </body>
+</html>

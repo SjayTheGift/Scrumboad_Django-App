@@ -1,0 +1,171 @@
+{% load static %}
+body{
+    font-family:'Roboto',sans-serif;
+    background:url("/static/img/mountain.jpg") no-repeat center center fixed;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover;
+    color:#fff;
+    
+}
+.card-title{
+    color:#000 !important;
+}
+
+h6{
+    color:#fff;
+    font-weight:bold;
+}
+
+.list {
+    width: 20%;
+    float: left;
+    border: 1px solid grey;
+    padding: 7px;
+    margin: 7px;
+    background-color: #2A9FBC;
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.hover-pointer{
+    cursor: pointer;
+}
+.description {
+    color: #848484;
+}
+
+.card-body {
+    padding: 0.50rem;
+}
+.bg-light{
+        background:#3b4652 !important;
+        border-radius: 3px;
+        box-shadow: 0px 0px 3px #848484;
+}
+hr{
+    color:#fff;
+    background-color:#fff;
+}
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+  float:left;
+}
+.add-card:hover{
+    color:#fff;
+}
+.form-display{
+    display:none;
+}
+.corve-corner{
+    border-radius: 3px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.main-section{
+    margin: 0 auto;
+    margin-top: 130px;
+    padding:0;
+}
+
+.main-section2{
+    margin: 0 auto;
+    padding:0;
+}
+.modal-content{
+    background-color:#3b4652;
+    opacity:.95;
+    padding: 0 18px;
+    box-shadow: 0px 0px 3px #848484;
+}
+.user-img{
+    margin-top:-50px;
+    margin-bottom:35px;
+}
+.user-img img{
+    height:100px;
+    width: 100px ;
+    border-radius:5px ;
+    box-shadow: 0px 0px 2px #3b4652;
+}
+
+.form-group input{
+    height: 42px;
+    border-radius:5px;
+    border:0;
+    font-size:18px;
+}
+/*
+.form-group::before{
+  font-family: 'Font Awesome\ 5 Free';
+  content: "\f007";
+  position:absolute;
+  font-size:22px;
+  color:#555e60;
+  padding-top:4px;
+  left:28px;
+}
+*/
+.group-relative{
+    position: relative;
+}
+
+.user-icon,.lock-icon{
+    position:absolute;
+    font-size:22px;
+    color:#55e60;
+    padding-top:10px;
+    padding-left:10px;
+}
+.btn-custom{
+    background-color: #27c2a5;
+    color:#fff;
+    font-size:19px;
+    padding: 7px 14px;
+    border-radius: 5px;
+    width: 50%;
+    border-bottom: 4px solid #219882;
+}
+.btn-custom2{
+    background-color: #27c2a5;
+    color:#fff;
+    border-radius: 5px;
+    border-bottom: 4px solid #219882;
+}
+
+.btn-custom:hover, .btn-custom:focus,.btn-custom2:hover, .btn-custom2:focus{
+    background-color: #25a890;
+    border-bottom: 4px solid #25a890 !important;
+}
+
+
+.fa-sign-in-alt{
+    font-size: 20px;
+    margin-right: 2%;
+}
+.forgot a{
+    color:#c2fbfe;
+}
+
+
+.helptext{
+  visibility: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+

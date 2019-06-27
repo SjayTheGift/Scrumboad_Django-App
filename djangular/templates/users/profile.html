@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        {% load staticfiles %}
+        {% load crispy_forms_tags %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="" text="" css"="" href="{% static 'css/custom.css' %} ">
+  
+        <header class="site-header">
+      <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="{% url 'home' %}">Django Trello</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+              {% else %}
+                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+        
+        
+    <div class="container">
+    
+        <!-- The Modal -->
+        <div class="modal-dialog modal-lg">
+            <div class="col-sm-8 main-section2">
+                {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+            {% endif %}
+                <div class="modal-content">
+                 <div class="clearfix">
+                    <img class="rounded-circle account-img float-left mt-2" src="{{ user.profile.image.url }}" alt="{{ user.username }}">
+                    <h6 class="mt-4">
+                    {{ user.username }}</br>
+                    {{ user.email }}
+                    </h6>
+                        
+                </div>
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <fieldset class="form-group">
+                                <legend class="border-bottom mb-4">Profile Info</legend>
+                                    {{ u_form|crispy }}
+                                    {{ p_form|crispy }}
+                            </fieldset>
+                            <div class="form-group">
+                                <button class="btn btn-outline-info btn-custom2" type="submit">Update</button>
+                            </div>
+                        </form>
+                </div><!-- end of Modal Content -->
+            </div>
+        </div>      
+    </div>
+    </body>
+</html>
